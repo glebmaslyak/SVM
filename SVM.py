@@ -6,7 +6,9 @@ import time
 import matplotlib.pyplot as plt
 
 
+#Реализован класс SVM для решения задач классификации методом опорных векторов.
 class SVM:
+    
     def __init__(self, C=1, method='primal', kernel=None, gamma=None):
         self.C = C
         self.method = method
@@ -14,7 +16,8 @@ class SVM:
         self.gamma = gamma
         self.w = None
         self.A = None
-
+    
+    #Вычисляет значение целевой функции в случае прямой задачи
     def compute_primal_objective(self, X, y):
         if not self.w is None:
             assert(X.shape[0] == y.shape[0])
@@ -33,6 +36,7 @@ class SVM:
         else:
             assert (not self.w is None)
 
+#Вычисляет значение целевой функции в случае двойственной задачи
     def compute_dual_objective(self, X, y):
         assert(X.shape[0] == y.shape[0])
         if self.A is None:
